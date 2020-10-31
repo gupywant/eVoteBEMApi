@@ -4,7 +4,7 @@ const validateToken = require('../auth/auth.js').validateToken;
 
 let router = express.Router();
 
-router.get('/privateArea', validateToken, login.test);
+router.get('/private', validateToken, login.test);
 router.post('/login',login.login);
 
 module.exports = router;
