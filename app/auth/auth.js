@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const con = require('../config/db')
 
 module.exports = {
   validateToken: (req, res, next) => {
