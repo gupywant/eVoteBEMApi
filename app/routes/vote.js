@@ -1,12 +1,12 @@
 const express = require('express');
-const login = require('../controller/login');
+const vote = require('../controller/vote');
 const validateToken = require('../auth/auth.js').validateToken;
 
 let router = express.Router();
 
-router.get('/private', login.test);
-router.post('/login',login.login);
-router.post('/loginMhs',login.loginMhs);
+
+router.post('/vote',validateToken, vote.vote);
+router.get('/counter', vote.count);
 
 module.exports = router;
 

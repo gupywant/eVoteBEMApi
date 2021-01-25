@@ -10,7 +10,7 @@ const create = (req,res,next) => {
     	} = req.body;
     	const date = new Date();
     	con.connect(function(err) {
-		con.query(`select * from admin where id_admin = 1`, function (err, admin, fields) {
+		con.query(`select * from admin where token = ${token}`, function (err, admin, fields) {
 		    	if (err) throw err;	
 		    	if(admin.length > 0){
     				let insert = {id_admin: admin[0].id_admin, title: title, image: image, content: content, updated_at: date, created_at: date}
