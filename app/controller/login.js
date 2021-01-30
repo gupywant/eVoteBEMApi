@@ -5,25 +5,9 @@ const {spawn} = require('child_process');
 
 const test = (req,res,next) => {
 	return res.status(201).json({
-	    'message': `Test API requested successfully`
-	});
-    con.connect(function(err) {
-		con.query(`select * from admin where id_admin = 1`, function (err, admin, fields) {
-	    	if (err) throw err;	
-	    	if(admin.length > 0){
-				console.log(admin[0].id_admin)
-	    		return res.status(201).json({
-			        'message': `Admin fetched successfully`,
-			        'data': admin
-			    });
-	    	}else{
-	    		return res.status(404).json({
-		            'code': 'NOT_FOUND',
-		            'message': 'No Admin found in the system'
-		        });
-	    	}
-	    })
-	})
+        'message': `Admin fetched successfully`,
+        'data': hash.generate('dion123')
+    });
 }
 
 const login = (req,res,next) => {
@@ -90,7 +74,7 @@ const loginMhs = async (req,res,next) => {
 						};
 						var token = jwt.sign({ id: result[0].npm },"inih salt key buat encrypt",options);
 						con.connect(function(err) {
-							con.query(`update students set token = "${token}"`, function (err, result, fields) {
+							con.query(`update students set token = "${token}" where username = "${username}"`, function (err, result, fields) {
 						    	if (err) throw err;
 						    })
 						})
